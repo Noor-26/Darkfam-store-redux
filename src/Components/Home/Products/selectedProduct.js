@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { selectedProduct } from '../../Redux/actions/productActions'
+import { selectedProduct,removeSelectedProduct } from '../../Redux/actions/productActions'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
+import Loading from '../../Loading/Loading'
 
 function SelectedProduct() {
   const {productId} = useParams()
-  const product = useSelector((state) => state.product )
-  const {category,description,image,price,title,id} = product
+  const product = useSelector((state) => state.product ) 
+  const {category,description,image,price,title} = product
 
   const dispatch = useDispatch()
   const fetchProduct = async () => {
@@ -16,8 +17,13 @@ function SelectedProduct() {
   }
   useEffect(() => {
     if (productId && productId !== '') fetchProduct()
+   return () => (
+    dispatch(removeSelectedProduct())
+   )
   }, [productId])
-  console.log(product)
+if(Object.keys(product).length === 0) {
+  return <Loading/> 
+}
   return (
     <div>
       <h1 className='text-center text-5xl '>Buy this Product!</h1>
