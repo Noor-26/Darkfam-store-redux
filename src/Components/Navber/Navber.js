@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Navber() {
   return (
 <div class="navbar bg-base-100">
   <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl">Darkfam store</a>
+    <Link to='/' class="btn btn-ghost normal-case text-xl">Darkfam store</Link>
   </div>
   <div class="flex-none gap-2">
     <div class="form-control">

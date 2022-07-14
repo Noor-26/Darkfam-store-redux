@@ -6,7 +6,6 @@ import ProductCard from './ProductCard'
 
 function Products() {
     const products = useSelector((state) => state.allProducts.products)
-    const {category,description,image,price,title} = products
     const dispatch = useDispatch()
     const fetchProduct = async () => {
         const {data} = await axios.get('https://fakestoreapi.com/products')  
